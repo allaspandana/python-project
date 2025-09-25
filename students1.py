@@ -114,3 +114,28 @@ def generate_report():
         writer.writeheader()
         writer.writerows(subset)
     print(f" Report exported: {fname}")
+def bulk_import():
+    file = input("Enter CSV file path to import: ")
+    if not os.path.exists(file):
+        print(" File not found.")
+        return
+    existing = read_students()
+    rolls = {s["Roll_No"] for s in existing}
+    errors = []
+    with open(file, newline="") as f:
+        reader = csv.DictReader(f)
+        for i, row in enumerate(reader, start=2):
+            if row["Roll_No"] in rolls:
+                errors.append((i, row, "Duplicate Roll_No"))
+                continue
+            existing.append(row)
+            rolls.add(row["Roll_No"])
+    write_students(existing)
+    if errors:
+        with open("import_errors.csv", "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Line","Data","Error"])
+            for e in errors:
+                writer.writerow(e)
+        print(" Errors saved to import_errors.csv")
+    print(" Bulk import completed.")
