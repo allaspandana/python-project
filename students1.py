@@ -139,3 +139,19 @@ def bulk_import():
                 writer.writerow(e)
         print(" Errors saved to import_errors.csv")
     print(" Bulk import completed.")
+def sort_filter():
+    students = read_students()
+    print("1. Sort by Final Marks")
+    print("2. Filter by Attendance < threshold")
+    choice = input("Enter choice: ")
+    if choice == "1":
+        sorted_list = sorted(students, key=lambda x: int(x["Final"]) if x["Final"].isdigit() else -1, reverse=True)
+        for s in sorted_list:
+            print(s)
+    elif choice == "2":
+        th = int(input("Enter threshold %: "))
+        filtered = [s for s in students if s["Attendance"].isdigit() and int(s["Attendance"]) < th]
+        for s in filtered:
+            print(s)
+    else:
+        print(" Invalid choice.")
