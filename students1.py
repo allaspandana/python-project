@@ -89,3 +89,28 @@ def delete_student():
                 print("Student deleted and archived.")
             return
     print("Roll No not found.")
+def generate_report():
+    students = read_students()
+    branch = input("Enter Branch: ")
+    year = input("Enter Year: ")
+    subset = [s for s in students if s["Branch"] == branch and s["Year"] == year]
+    if not subset:
+        print(" No data for given branch/year.")
+        return
+
+    marks = [int(s["Final"]) for s in subset if s["Final"].isdigit()]
+    avg = statistics.mean(marks) if marks else 0
+    highest = max(marks) if marks else 0
+    lowest = min(marks) if marks else 0
+
+    print(f"\nReport for {branch} - Year {year}")
+    print(f"Total Students: {len(subset)}")
+    print(f"Average: {avg:.2f}, Highest: {highest}, Lowest: {lowest}")
+
+    ensure_reports_folder()
+    fname = os.path.join(REPORT_FOLDER, f"report_{branch}_{year}.csv")
+    with open(fname, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=subset[0].keys())
+        writer.writeheader()
+        writer.writerows(subset)
+    print(f" Report exported: {fname}")
