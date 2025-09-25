@@ -178,3 +178,5 @@ def main_menu():
         elif choice == "7": sort_filter()
         elif choice == "8": sys.exit()
         else: print(" Invalid choice. Try again.")
+if __name__ == "__main__":
+    main_menu()
