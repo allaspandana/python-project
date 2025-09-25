@@ -155,3 +155,26 @@ def sort_filter():
             print(s)
     else:
         print(" Invalid choice.")
+
+def main_menu():
+    while True:
+        print("\n=== Student Management System ===")
+        print("1. New Admission")
+        print("2. Search Student")
+        print("3. Update Records")
+        print("4. Delete Student")
+        print("5. Generate Reports")
+        print("6. Bulk Import")
+        print("7. Sort / Filter")
+        print("8. Exit")
+        choice = input("Enter choice: ")
+
+        if choice == "1": add_student()
+        elif choice == "2": search_student()
+        elif choice == "3": update_student()
+        elif choice == "4": delete_student()
+        elif choice == "5": generate_report()
+        elif choice == "6": bulk_import()
+        elif choice == "7": sort_filter()
+        elif choice == "8": sys.exit()
+        else: print(" Invalid choice. Try again.")
