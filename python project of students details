@@ -1,0 +1,8 @@
+import csv
+import os
+import sys
+import statistics
+
+CSV_FILE = "students.csv"
+DELETED_FILE = "students_deleted.csv"
+REPORT_FOLDER = "reports"

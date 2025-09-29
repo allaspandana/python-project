@@ -159,14 +159,14 @@ def sort_filter():
 def main_menu():
     while True:
         print("\n=== Student Management System ===")
-        print("1. New Admission")
-        print("2. Search Student")
-        print("3. Update Records")
-        print("4. Delete Student")
-        print("5. Generate Reports")
-        print("6. Bulk Import")
-        print("7. Sort / Filter")
-        print("8. Exit")
+        print("1.New Admission")
+        print("2.Search Student")
+        print("3.Update Records")
+        print("4 Delete Student")
+        print("5.Generate Reports")
+        print("6.Bulk Import")
+        print("7.Sort / Filter")
+        print("8.Exit")
         choice = input("Enter choice: ")
 
         if choice == "1": add_student()
