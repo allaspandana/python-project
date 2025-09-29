@@ -1,0 +1,8 @@
+def read_students():
+    if not os.path.exists(CSV_FILE):
+        with open(CSV_FILE, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Roll_No","Name","Branch","Year","Gender","Age",
+                             "Attendance","Mid1","Mid2","Quiz","Final"])
+    with open(CSV_FILE, newline="") as f:
+        return list(csv.DictReader(f))
